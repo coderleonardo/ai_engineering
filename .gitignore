@@ -163,3 +163,4 @@ cython_debug/
 
 # Ignorar arquivos com "dsa" no nome
 *dsa*
+**/*dsa*/
