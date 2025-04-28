@@ -306,4 +306,45 @@ Word embeddings are a type of word representation that captures the semantic mea
 - **Out-of-Vocabulary Words:** Traditional embeddings like Word2Vec struggle with unseen words, though models like FastText address this issue.  
 - **Context Independence:** Static embeddings (e.g., Word2Vec, GloVe) do not account for word meaning changes based on context, which is resolved by contextual embeddings like BERT and ELMo.
 
-## Chapter 9 - Deep Learning for Computer Vision Task### 
+## Chapter 9 - Deep Learning for Computer Vision Task
+
+### Classification, Object Detection, and Object Segmentation
+
+In computer vision, tasks often involve understanding and analyzing visual data. Below are the key differences between classification, object detection, and object segmentation:
+
+1. **Classification:**  
+    - Focuses on identifying the category or class of an entire image.  
+    - Example: Determining whether an image contains a cat or a dog.  
+    - Output: A single label for the entire image.
+
+2. **Object Detection:**  
+    - Identifies and localizes multiple objects within an image by drawing bounding boxes around them.  
+    - Example: Detecting all cars and pedestrians in a street scene.  
+    - Output: Bounding boxes with class labels for each detected object.
+
+3. **Object Segmentation:**  
+    - Provides pixel-level classification of objects, dividing the image into regions corresponding to different objects or classes.  
+    - Example: Identifying the exact pixels belonging to a cat in an image.  
+    - Output: A mask for each object or class, offering more precise localization than bounding boxes.
+
+### Convolutional Neural Networks (CNNs)
+
+Convolutional Neural Networks (CNNs) are a class of deep learning models specifically designed for processing structured grid data, such as images. They use convolutional layers to extract spatial features by applying filters that detect patterns like edges, textures, and shapes. CNNs are highly effective for tasks like image classification, object detection, and segmentation due to their ability to learn hierarchical feature representations.
+
+### R-CNN, Fast R-CNN, YOLO, and SSD
+
+1. **R-CNN (Region-Based Convolutional Neural Network):**  
+    - R-CNN generates region proposals using selective search and applies a CNN to each region to classify objects. While accurate, it is computationally expensive due to the need to process each region individually.
+
+2. **Fast R-CNN:**  
+    - An improvement over R-CNN, Fast R-CNN processes the entire image with a CNN to extract feature maps, then applies region proposals on these maps. This significantly reduces computation time and improves training efficiency.
+
+3. **YOLO (You Only Look Once):**  
+    - YOLO treats object detection as a single regression problem, predicting bounding boxes and class probabilities directly from the entire image in one pass. It is extremely fast and suitable for real-time applications, though it may trade off some accuracy for speed.
+
+4. **SSD (Single Shot MultiBox Detector):**  
+    - SSD divides the image into a grid and predicts bounding boxes and class probabilities for each grid cell in a single forward pass. It balances speed and accuracy, making it effective for real-time object detection tasks.
+
+These models represent key advancements in object detection, each optimizing for different trade-offs between speed and accuracy.  
+
+## Chapter 11 - Deep Learning for Natural Language Processing - Part 1
