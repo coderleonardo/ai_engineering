@@ -348,3 +348,318 @@ Convolutional Neural Networks (CNNs) are a class of deep learning models specifi
 These models represent key advancements in object detection, each optimizing for different trade-offs between speed and accuracy.  
 
 ## Chapter 11 - Deep Learning for Natural Language Processing - Part 1
+
+### Difference Between One-Hot Encoding, TF-IDF, and Word Embeddings
+
+- **One-Hot Encoding:**  
+    - Represents each word as a unique binary vector where only one element is `1` (indicating the word) and the rest are `0`. It is simple but results in high-dimensional, sparse vectors and does not capture semantic relationships between words.
+
+- **TF-IDF (Term Frequency-Inverse Document Frequency):**  
+    - A statistical measure that evaluates the importance of a word in a document relative to a collection of documents. It considers both the frequency of the word in the document and how unique it is across the corpus. While it captures some importance, it does not encode semantic meaning.
+
+- **Word Embeddings:**  
+    - Dense, low-dimensional vector representations of words learned from large corpora. They capture semantic relationships between words (e.g., "king" - "man" + "woman" ≈ "queen") and are widely used in modern NLP tasks.
+
+These methods differ in complexity, dimensionality, and their ability to capture semantic meaning, with word embeddings being the most advanced.
+
+### Word2Vec, GloVe, and FastText
+
+- **Word2Vec:**  
+    Word2Vec is a neural network-based model developed by Google that generates word embeddings by predicting word co-occurrence in a given context. It has two architectures: Continuous Bag of Words (CBOW), which predicts a target word based on its context, and Skip-Gram, which predicts context words given a target word.
+
+- **GloVe (Global Vectors for Word Representation):**  
+    GloVe is a model developed by Stanford that combines local context (word co-occurrence) and global statistics (word frequency) to create embeddings. It uses matrix factorization to capture semantic relationships between words.
+
+- **FastText:**  
+    FastText, developed by Facebook, extends Word2Vec by representing words as a combination of character n-grams. This allows it to handle out-of-vocabulary words and capture subword information, making it effective for morphologically rich languages.
+
+### Recurrent Neural Networks (RNNs)
+
+Recurrent Neural Networks (RNNs) are a class of neural networks designed for sequential data, such as time series, text, or speech. They process input sequences one step at a time, maintaining a hidden state that captures information about previous steps. This makes RNNs suitable for tasks like language modeling, machine translation, and speech recognition.
+
+#### Limitations of RNNs
+1. **Vanishing Gradient Problem:**  
+    - During backpropagation, gradients can become very small, making it difficult for the network to learn long-term dependencies.
+2. **Exploding Gradient Problem:**  
+    - Gradients can grow excessively large, leading to unstable training.
+3. **Difficulty in Capturing Long-Term Dependencies:**  
+    - Standard RNNs struggle to retain information over long sequences, limiting their effectiveness for tasks requiring long-term context.
+
+#### Variants Addressing RNN Limitations
+1. **Long Short-Term Memory (LSTM):**  
+    - LSTMs introduce memory cells and gating mechanisms (input, forget, and output gates) to control the flow of information. This architecture enables LSTMs to retain long-term dependencies and mitigate the vanishing gradient problem.
+
+2. **Gated Recurrent Unit (GRU):**  
+    - GRUs simplify the LSTM architecture by combining the input and forget gates into a single update gate and using a reset gate. GRUs are computationally efficient and perform well on tasks requiring long-term context.
+
+These variants have significantly improved the ability of RNNs to model sequential data, making them widely used in modern deep learning applications.
+
+### Attention Mechanisms
+
+Attention mechanisms are a key innovation in deep learning that allow models to focus on specific parts of the input data when making predictions. By assigning different weights to different input elements, attention enables the model to prioritize relevant information while ignoring less important details. This is particularly useful for handling long sequences, where traditional models like RNNs struggle to capture dependencies effectively.
+
+#### Applications in Transformers
+1. **Machine Translation:** Attention helps models align words in the source and target languages, improving translation quality.
+2. **Text Summarization:** By focusing on key sentences or phrases, attention enables concise and coherent summaries.
+3. **Question Answering:** Attention identifies relevant parts of the context to answer specific questions accurately.
+4. **Image Captioning:** In vision tasks, attention highlights important regions of an image to generate descriptive captions.
+
+Transformers, such as BERT and GPT, leverage self-attention mechanisms to model relationships between all input tokens simultaneously, making them highly effective for tasks in natural language processing and beyond.
+
+## Chapter 12 - Deep Learning for Natural Language Processing - Part 2
+
+### Fine-Tuning of Models
+
+Fine-tuning is the process of taking a pre-trained model and adapting it to a specific task by training it further on a smaller, task-specific dataset. This approach leverages the knowledge the model has already learned from a large, general dataset, reducing the need for extensive training and computational resources. Fine-tuning typically involves adjusting the model's weights while preserving its pre-trained structure, making it highly effective for tasks like text classification, sentiment analysis, and image recognition.
+
+### Large Language Models (LLMs)
+
+Large Language Models (LLMs) are advanced neural networks trained on massive amounts of text data to understand and generate human-like language. Examples include GPT, BERT, and T5. These models leverage transformer architectures and self-attention mechanisms to process and generate text, making them highly effective for tasks like translation, summarization, and question answering.
+
+#### Fine-Tuning with LLMs
+Fine-tuning LLMs involves adapting a pre-trained model to a specific task or domain by training it further on a smaller, task-specific dataset. This process allows the model to retain its general language understanding while specializing in the nuances of the target task, improving performance without requiring training from scratch.
+
+## Chapter 13 - Deep Learning for Financial Applications
+
+### Deep Learning for Fraud Detection
+
+Fraud detection is a critical application of deep learning in financial systems, where the goal is to identify fraudulent activities such as unauthorized transactions, identity theft, or money laundering. Deep learning models excel in this domain due to their ability to analyze large volumes of data, detect complex patterns, and adapt to evolving fraud tactics.
+
+#### Key Steps in Fraud Detection Using Deep Learning
+
+1. **Data Collection and Preprocessing:**  
+    - Collect transactional data, user behavior logs, and other relevant information.  
+    - Preprocess the data by handling missing values, normalizing features, and encoding categorical variables. 
+
+2. **Feature Engineering:**  
+    - Extract meaningful features such as transaction amount, location, time, and user behavior patterns.  
+    - Use domain knowledge to create features that highlight anomalies or unusual patterns.
+
+3. **Model Selection:**  
+    - Choose appropriate deep learning architectures based on the nature of the data and the problem. Commonly used models include:  
+        - **Feedforward Neural Networks (FNNs):** Suitable for structured tabular data.  
+        - **Recurrent Neural Networks (RNNs):** Effective for sequential data, such as transaction histories.  
+        - **Convolutional Neural Networks (CNNs):** Can be applied to image-like representations of data, such as heatmaps of transaction patterns.  
+        - **Autoencoders:** Useful for anomaly detection by learning a compressed representation of normal transactions and identifying deviations.  
+        - **Graph Neural Networks (GNNs):** Effective for analyzing relationships in graph-structured data, such as networks of transactions or user connections.
+
+4. **Training and Evaluation:**  
+    - Train the model using labeled data, where fraudulent and non-fraudulent transactions are identified.  
+    - Use metrics like Precision, Recall, F1-Score, and ROC-AUC to evaluate the model's performance, as accuracy alone may be misleading for imbalanced datasets.
+
+5. **Deployment and Monitoring:**  
+    - Deploy the trained model in a real-time system to flag suspicious transactions.  
+    - Continuously monitor the model's performance and update it to adapt to new fraud patterns.
+
+#### Example: Using Autoencoders for Fraud Detection
+
+Autoencoders are unsupervised neural networks that learn to reconstruct input data. They are particularly effective for fraud detection because they can model normal transaction patterns and identify anomalies as reconstruction errors.
+
+1. **Architecture:**  
+    - The autoencoder consists of an encoder that compresses the input data into a lower-dimensional representation and a decoder that reconstructs the original data.
+
+2. **Training:**  
+    - Train the autoencoder on non-fraudulent transactions to learn the normal behavior of the system.
+
+3. **Detection:**  
+    - During inference, calculate the reconstruction error for each transaction. Transactions with high reconstruction errors are flagged as potential fraud.
+
+#### Example Algorithms for Fraud Detection
+
+1. **Supervised Learning Algorithms:**  
+    - **Logistic Regression:** A baseline model for binary classification.  
+    - **Random Forests and Gradient Boosting (e.g., XGBoost, LightGBM):** Effective for structured data but may require feature engineering.  
+    - **Deep Neural Networks (DNNs):** Capture complex patterns in high-dimensional data.
+
+2. **Unsupervised Learning Algorithms:**  
+    - **K-Means Clustering:** Groups similar transactions and flags outliers.  
+    - **Isolation Forests:** Identifies anomalies by isolating data points in a tree structure.  
+    - **Autoencoders:** Detect anomalies based on reconstruction errors.
+
+3. **Hybrid Approaches:**  
+    - Combine supervised and unsupervised methods to leverage labeled and unlabeled data. For example, use an autoencoder to detect anomalies and a supervised model to classify them as fraudulent or non-fraudulent.
+
+#### Real-World Applications
+
+1. **Credit Card Fraud Detection:**  
+    - Analyze transaction patterns to identify unauthorized purchases.  
+    - Example: Using RNNs to model sequential transaction data and detect unusual spending behavior.
+
+2. **Insurance Fraud Detection:**  
+    - Identify fraudulent claims by analyzing claim details and user behavior.  
+    - Example: Using CNNs to analyze images of damaged property for inconsistencies.
+
+3. **Money Laundering Detection:**  
+    - Monitor transaction networks to detect suspicious activities.  
+    - Example: Using GNNs to analyze relationships between accounts and identify unusual transaction flows.
+
+#### Advantages of Deep Learning in Fraud Detection
+
+- **Scalability:** Handles large volumes of data efficiently.  
+- **Adaptability:** Learns evolving fraud patterns without extensive feature engineering.  
+- **Accuracy:** Captures complex, non-linear relationships in the data.  
+- **Automation:** Reduces the need for manual rule-based systems.
+
+#### Challenges
+
+- **Data Imbalance:** Fraudulent transactions are rare, requiring techniques like oversampling or cost-sensitive learning.  
+- **Interpretability:** Deep learning models can be difficult to interpret, making it challenging to explain decisions to stakeholders.  
+- **Real-Time Processing:** Deploying models for real-time fraud detection requires low-latency systems.
+
+## Chapter 14 - Deep Learning for Time Series
+
+### Main Characteristics of a Time Series
+
+Time series data exhibits several key characteristics that help in understanding and modeling its behavior:
+
+1. **Trend:**  
+    - The long-term movement or direction in the data, indicating an overall increase, decrease, or stability over time.
+
+2. **Seasonality:**  
+    - Regular, repeating patterns or fluctuations in the data that occur at specific intervals, such as daily, monthly, or yearly.
+
+3. **Cyclicality:**  
+    - Long-term oscillations in the data that are not fixed in frequency, often influenced by economic or business cycles.
+
+4. **Stationarity:**  
+    - A property where the statistical characteristics (mean, variance, autocorrelation) of the time series remain constant over time.
+
+5. **Autocorrelation:**  
+    - The correlation of a time series with its own past values, indicating how current values are influenced by previous ones.
+
+6. **Structural Breaks:**  
+    - Sudden changes in the underlying data-generating process, often caused by external events or shifts in behavior.
+
+7. **Noise:**  
+    - Random variations or irregularities in the data that cannot be attributed to any specific pattern or structure.
+
+8. **Lags:**  
+    - The delayed effect of past values or events on the current value of the time series, often used in predictive modeling.
+
+Understanding these characteristics is essential for selecting appropriate models and techniques for time series analysis and forecasting.
+
+### Steps in Modeling a Time Series
+
+Modeling a time series involves several steps to ensure the data is properly prepared, analyzed, and used to build an accurate predictive model. Below is a detailed explanation of the key steps:
+
+#### 1. **Exploratory Data Analysis (EDA)**
+- **Visual Inspection:** Plot the time series to identify trends, seasonality, cyclicality, and anomalies.
+- **Summary Statistics:** Calculate mean, variance, and other descriptive statistics to understand the data's distribution.
+- **Decomposition:** Decompose the series into trend, seasonal, and residual components to analyze each individually.
+
+#### 2. **Stationarity Check**
+- A stationary time series has constant mean, variance, and autocorrelation over time, which is a key assumption for many time series models.
+- **Tests for Stationarity:**
+    - **Augmented Dickey-Fuller (ADF) Test:** Checks for the presence of a unit root. A p-value less than 0.05 indicates stationarity.
+    - **Kwiatkowski-Phillips-Schmidt-Shin (KPSS) Test:** Tests the null hypothesis of stationarity. A p-value greater than 0.05 indicates stationarity.
+    - **Phillips-Perron (PP) Test:** Similar to the ADF test but more robust to heteroskedasticity.
+- **Visual Methods:**
+    - Plot the rolling mean and rolling standard deviation. If they remain constant over time, the series is likely stationary.
+
+#### 3. **Transformations**
+- If the series is not stationary, apply transformations to stabilize variance or remove trends:
+    - **Log Transformation:** Reduces heteroskedasticity.
+    - **Square Root or Box-Cox Transformation:** Stabilizes variance.
+
+#### 4. **Differencing**
+- Differencing is used to remove trends and make the series stationary:
+    - **First Differencing:** Subtract the previous value from the current value.
+    - **Seasonal Differencing:** Subtract the value from the same season in the previous cycle.
+- Check stationarity again after differencing. If the series is still not stationary, additional differencing may be required.
+
+#### 5. **Autocorrelation and Partial Autocorrelation Analysis**
+- Use the **Autocorrelation Function (ACF)** and **Partial Autocorrelation Function (PACF)** plots to identify patterns and determine the order of ARIMA (AutoRegressive Integrated Moving Average) models:
+    - **ACF:** Shows the correlation of the series with its lags.
+    - **PACF:** Shows the correlation of the series with its lags after removing the effects of intermediate lags.
+
+#### 6. **Model Selection**
+- Choose an appropriate model based on the characteristics of the time series:
+    - **ARIMA:** For univariate time series with no seasonality.
+    - **SARIMA:** For seasonal time series.
+    - **Exponential Smoothing (ETS):** For series with trend and seasonality.
+    - **Prophet:** For series with irregular trends and seasonality.
+    - **LSTM/GRU:** For complex, non-linear time series.
+
+#### 7. **Model Fitting**
+- Fit the selected model to the training data and estimate its parameters.
+- Use techniques like Maximum Likelihood Estimation (MLE) or Least Squares to optimize the model.
+
+#### 8. **Residual Analysis**
+- Analyze the residuals (errors) to ensure the model is adequate:
+    - **White Noise:** Residuals should be uncorrelated, have zero mean, and constant variance.
+    - **ACF of Residuals:** Check that there is no significant autocorrelation in the residuals.
+    - **Normality Test:** Use the Shapiro-Wilk or Kolmogorov-Smirnov test to check if residuals are normally distributed.
+
+#### 9. **Model Evaluation**
+- Evaluate the model's performance using metrics like:
+    - **Mean Absolute Error (MAE):** Measures the average magnitude of errors.
+    - **Mean Squared Error (MSE):** Penalizes larger errors more than MAE.
+    - **Root Mean Squared Error (RMSE):** Square root of MSE, interpretable in the same units as the data.
+    - **Mean Absolute Percentage Error (MAPE):** Measures error as a percentage of actual values.
+
+#### 10. **Forecasting**
+- Use the fitted model to make predictions on the test data or future time points.
+- Include confidence intervals to quantify uncertainty in the forecasts.
+
+#### 11. **Validation and Refinement**
+- Compare the model's predictions with actual values to validate its accuracy.
+- Refine the model by adjusting parameters, adding exogenous variables, or trying alternative models if necessary.
+
+#### 12. **Deployment**
+- Deploy the model for real-time or batch forecasting.
+- Monitor its performance over time and update it as new data becomes available.
+
+By following these steps, you can systematically model a time series and build robust forecasts that capture the underlying patterns and dynamics of the data.
+
+### Traditional Methods for Time Series Analysis
+
+Time series analysis has long relied on traditional statistical methods to model and forecast data. These methods are well-suited for simpler, linear patterns and are widely used due to their interpretability and efficiency.
+
+#### 1. **ARIMA (AutoRegressive Integrated Moving Average):**
+- **Description:** ARIMA is a popular method for modeling univariate time series data. It combines three components:
+    - **AutoRegressive (AR):** Models the relationship between an observation and its lagged values.
+    - **Integrated (I):** Differencing the data to make it stationary.
+    - **Moving Average (MA):** Models the relationship between an observation and the residual errors from a moving average model applied to lagged observations.
+- **Use Case:** Suitable for time series with no seasonality and where the data can be made stationary through differencing.
+
+#### 2. **SARIMA (Seasonal ARIMA):**
+- **Description:** SARIMA extends ARIMA by incorporating seasonal components. It adds seasonal autoregressive, differencing, and moving average terms to handle periodic patterns in the data.
+- **Use Case:** Effective for time series with clear seasonal trends, such as monthly sales or temperature data.
+
+#### 3. **Holt-Winters (Exponential Smoothing):**
+- **Description:** Holt-Winters is an exponential smoothing method that models level, trend, and seasonality in time series data. It comes in two variants:
+    - **Additive Model:** Assumes the seasonal variations are constant over time.
+    - **Multiplicative Model:** Assumes the seasonal variations change proportionally with the level of the series.
+- **Use Case:** Ideal for time series with both trend and seasonality.
+
+### Modern Methods for Time Series Analysis
+
+With the advent of deep learning, modern methods have emerged to handle complex, non-linear patterns and large-scale time series data. These methods leverage neural networks and advanced architectures to capture intricate relationships in the data.
+
+#### 1. **LSTM (Long Short-Term Memory):**
+- **Description:** LSTMs are a type of Recurrent Neural Network (RNN) designed to capture long-term dependencies in sequential data. They use memory cells and gating mechanisms to retain important information over time, addressing the vanishing gradient problem.
+- **Use Case:** Effective for time series with long-term dependencies, such as stock prices, weather forecasting, and energy consumption.
+
+#### 2. **GRU (Gated Recurrent Unit):**
+- **Description:** GRUs are a simplified version of LSTMs that combine the input and forget gates into a single update gate. They are computationally efficient and perform well on tasks requiring sequential modeling.
+- **Use Case:** Suitable for time series with moderate complexity and dependencies.
+
+#### 3. **Transformers:**
+- **Description:** Transformers, originally developed for natural language processing, have been adapted for time series analysis. They use self-attention mechanisms to model relationships between all time steps simultaneously, making them highly effective for capturing both short- and long-term dependencies.
+- **Use Case:** Ideal for large-scale, multivariate time series data, such as sensor readings, financial data, and demand forecasting.
+
+#### 4. **Hybrid Models:**
+- **Description:** Hybrid models combine traditional methods with deep learning to leverage the strengths of both approaches. For example, ARIMA can be used to model linear components, while LSTMs or Transformers handle non-linear patterns.
+- **Use Case:** Useful for complex time series with both linear and non-linear dynamics.
+
+### Comparison of Traditional and Modern Methods
+
+| **Aspect**            | **Traditional Methods**         | **Modern Methods**               |
+|------------------------|----------------------------------|-----------------------------------|
+| **Complexity**         | Handles linear patterns         | Handles non-linear patterns       |
+| **Interpretability**   | High                           | Low                               |
+| **Scalability**        | Limited to smaller datasets     | Scales well to large datasets     |
+| **Seasonality/Trend**  | Explicitly modeled              | Learned implicitly                |
+| **Long-Term Dependencies** | Limited                     | Captures effectively              |
+
+Both traditional and modern methods have their strengths and weaknesses. The choice of method depends on the complexity of the time series, the availability of data, and the specific requirements of the task.
