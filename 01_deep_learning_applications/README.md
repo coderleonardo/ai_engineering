@@ -663,3 +663,124 @@ With the advent of deep learning, modern methods have emerged to handle complex,
 | **Long-Term Dependencies** | Limited                     | Captures effectively              |
 
 Both traditional and modern methods have their strengths and weaknesses. The choice of method depends on the complexity of the time series, the availability of data, and the specific requirements of the task.
+
+### Temporal Fusion Transformer (TFT) for Time Series Modeling
+
+The Temporal Fusion Transformer (TFT) is a state-of-the-art deep learning model designed specifically for time series forecasting. It combines the strengths of recurrent neural networks (RNNs) and attention mechanisms to handle complex temporal relationships, multivariate inputs, and long-term dependencies. TFT is particularly effective for datasets with missing values, categorical variables, and varying temporal dynamics.
+
+#### Key Features of TFT
+1. **Interpretable Attention Mechanisms:**  
+    - TFT uses attention mechanisms to highlight the most important features, time steps, and variables, providing interpretability in its predictions.
+2. **Handling Multivariate Inputs:**  
+    - The model can process multiple time series and static covariates simultaneously, making it suitable for complex datasets.
+3. **Dynamic Temporal Relationships:**  
+    - TFT captures both short-term and long-term dependencies in the data using a combination of recurrent layers and attention mechanisms.
+4. **Robustness to Missing Data:**  
+    - TFT can handle missing values and irregular time series effectively, reducing the need for extensive preprocessing.
+
+#### How TFT Works
+TFT consists of several key components that work together to model time series data:
+
+1. **Input Representations:**  
+    - The model processes three types of inputs:  
+      - **Static Covariates:** Features that remain constant over time (e.g., product category, location).  
+      - **Time-Varying Known Inputs:** Features known for all time steps (e.g., calendar features, weather forecasts).  
+      - **Time-Varying Observed Inputs:** Features observed at each time step (e.g., sales, stock prices).
+
+2. **Variable Selection:**  
+    - TFT uses a gating mechanism to select the most relevant variables dynamically, reducing noise and improving interpretability.
+
+3. **LSTM Encoder-Decoder:**  
+    - The model employs a sequence-to-sequence architecture with LSTMs to capture temporal dependencies in the data.  
+    - The encoder processes historical data, while the decoder generates forecasts for future time steps.
+
+4. **Static Covariate Encoders:**  
+    - Static features are encoded separately and used to condition the temporal dynamics, allowing the model to adapt to different contexts.
+
+5. **Multi-Head Attention:**  
+    - TFT incorporates multi-head attention to focus on the most relevant time steps and features, enabling the model to capture long-term dependencies effectively.
+
+6. **Interpretable Outputs:**  
+    - The model provides attention weights and gating values, which can be analyzed to understand the importance of different features and time steps.
+
+#### Advantages of TFT
+1. **Interpretability:**  
+    - TFT provides insights into which features and time steps contribute most to the predictions, making it suitable for applications where explainability is critical.
+2. **Flexibility:**  
+    - The model can handle a wide range of time series data, including multivariate inputs, categorical variables, and missing values.
+3. **Scalability:**  
+    - TFT is designed to scale to large datasets, making it suitable for industrial applications like demand forecasting and financial modeling.
+4. **Accuracy:**  
+    - By combining LSTMs and attention mechanisms, TFT achieves high accuracy in capturing complex temporal patterns.
+
+#### Parameters of TFT
+1. **Hidden Size:**  
+    - Determines the number of units in the LSTM layers and attention mechanisms.
+2. **Number of Heads:**  
+    - Specifies the number of attention heads in the multi-head attention mechanism.
+3. **Dropout Rate:**  
+    - Controls the regularization to prevent overfitting.
+4. **Learning Rate:**  
+    - Specifies the step size for the optimization algorithm.
+5. **Sequence Length:**  
+    - Defines the length of the input sequence used for forecasting.
+6. **Static and Temporal Feature Embedding Dimensions:**  
+    - Determines the size of the embeddings for static and temporal features.
+
+#### Applications of TFT
+1. **Demand Forecasting:**  
+    - Predicting product demand in retail and supply chain management.
+2. **Energy Load Forecasting:**  
+    - Modeling electricity consumption patterns for grid optimization.
+3. **Financial Time Series:**  
+    - Forecasting stock prices, exchange rates, and other financial metrics.
+4. **Healthcare:**  
+    - Predicting patient outcomes and resource utilization in hospitals.
+
+#### Challenges and Considerations
+1. **Computational Complexity:**  
+    - TFT requires significant computational resources for training, especially on large datasets.
+2. **Hyperparameter Tuning:**  
+    - The model has several hyperparameters that need careful tuning for optimal performance.
+3. **Data Preprocessing:**  
+    - While robust to missing values, TFT still requires careful preprocessing of categorical and numerical features.
+
+TFT represents a powerful tool for time series forecasting, combining interpretability, flexibility, and accuracy to address a wide range of real-world challenges.
+
+### Metrics for Evaluating Time Series Models
+
+Evaluating the performance of time series models involves using various metrics that measure the accuracy and quality of predictions. Below are some commonly used metrics:
+
+1. **Mean Absolute Error (MAE):**  
+    - Measures the average magnitude of errors in predictions, without considering their direction.  
+    - Formula:  
+      $$\text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$  
+    - Lower values indicate better model performance.
+
+2. **Root Mean Squared Error (RMSE):**  
+    - Penalizes larger errors more than MAE by squaring them, making it sensitive to outliers.  
+    - Formula:  
+      $$\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$  
+    - Useful for understanding error magnitude in the same units as the data.
+
+3. **Mean Absolute Percentage Error (MAPE):**  
+    - Expresses errors as a percentage of actual values, making it scale-independent.  
+    - Formula:  
+      $$\text{MAPE} = \frac{1}{n} \sum_{i=1}^{n} \left| \frac{y_i - \hat{y}_i}{y_i} \right| \times 100$$  
+    - Suitable for comparing models across different datasets.
+
+4. **Akaike Information Criterion (AIC):**  
+    - Evaluates model quality by balancing goodness of fit and model complexity.  
+    - Formula:  
+      $$\text{AIC} = 2k - 2\ln(L)$$  
+      Where $k$ is the number of parameters and $L$ is the likelihood of the model.  
+    - Lower AIC values indicate better models.
+
+5. **Bayesian Information Criterion (BIC):**  
+    - Similar to AIC but includes a stronger penalty for model complexity.  
+    - Formula:  
+      $$\text{BIC} = k \ln(n) - 2\ln(L)$$  
+      Where $n$ is the number of data points.  
+    - Useful for model selection when comparing multiple models.
+
+These metrics help assess the accuracy, efficiency, and complexity of time series models, guiding the selection of the most appropriate model for a given task.
