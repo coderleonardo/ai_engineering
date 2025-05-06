@@ -1,0 +1,1 @@
+g++ <scrip_name>.cpp -o <scrip_name>
